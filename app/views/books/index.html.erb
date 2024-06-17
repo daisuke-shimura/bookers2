@@ -1,6 +1,24 @@
  <div class="message">
   <%= flash[:notice] %>
  </div>
+ 
+ <!--User info)-->
+ <h2>User info</h2>
+  <!--%= image_tag user.get_profile_image(100,100) %-->
+<table>
+   <tbody>
+    <tr>
+      <td><p>name</p></td>
+      <td><p><span></span></p></td>
+    </tr>
+    <tr>
+      <td><p>introduction</p></td>
+      <td><p><span></span></p></td>
+    </tr>
+   </tbody>
+  </table>
+
+
 
  <h2>Books</h2>
   <table>
@@ -28,9 +46,6 @@
   </table>
 
 
-<!--User info)-->
-
-
 <!--新規作成 -->
 
 <% if @hon.errors.any? %>
@@ -45,7 +60,7 @@
 </div>
 
 
- <div class="New-book">
+ <div class="New-book>
 
   <h3>New book</h3>
 
@@ -63,6 +78,6 @@
    <div class="submit">
     <%= f.submit "Create Book" %>
    </div>
-   
+
    <% end %>
 </div>
