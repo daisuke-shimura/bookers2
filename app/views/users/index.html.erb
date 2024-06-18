@@ -8,16 +8,16 @@
   <div class="col-md-3">
 
     <h3>User info</h3>
-    <%= image_tag @user.get_profile_image(100,100) %>
+    <%= image_tag current_user.get_profile_image(100,100) %>
     <table class="table table-striped">
      <tbody>
       <tr>
         <td><p>name</p></td>
-        <td><p><span><%= @user.name %></span></p></td>
+        <td><p><span><%= current_user.name %></span></p></td>
       </tr>
       <tr>
         <td><p>introduction</p></td>
-        <td><p><span><%= @user.introduction %></span></p></td>
+        <td><p><span><%= current_user.introduction %></span></p></td>
       </tr>
      </tbody>
     </table>
@@ -52,12 +52,12 @@
 
     <!--book一覧-->
   <div class="col-md-8 offset-md-1">
-   <h2>Books</h2>
+   <h2>Users</h2>
     <table>
      <thead>
       <tr>
-       <th><h4>Title</h4></th>
-        <th><h4>Body</h4></th>
+        <th><h4>image</h4></th>
+        <th><h4>name</h4></th>
         <th></th>
         <th></th>
         <th></th>
@@ -65,13 +65,11 @@
      </thead>
 
      <tbody>
-       <% @books. each do |book| %>
+       <% @users.each do |user| %>
       <tr>
-        <td><p><span><%= book.title %></span></p></td>
-        <td><p><span><%= book.body %></span></p></td>
-        <td><%= link_to "Show", book_path(book.id)%></td>
-        <td><%= link_to "Edit", edit_book_path(book.id) %></td>
-        <td><%= link_to "Destroy", book_path(book.id),method: :delete, "data-confirm" => "Are you sure？" %></td>
+        <td><p><span><%= image_tag user.get_profile_image(100,100) %></span></p></td>
+        <td><p><span><%= user.name %></span></p></td>
+        <td><%= link_to "Show", user_path(user.id)%></td>
       </tr>
       <% end %>
      </tbody>
@@ -80,4 +78,3 @@
 
  </div>
 </div>
-

@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def index
+    @users = User.all
+    @books = Book.all
+    @book = Book.new
+    @hon = Book.new #エラー用
+  end
 
 
   private

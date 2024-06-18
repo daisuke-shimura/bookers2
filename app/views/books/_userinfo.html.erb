@@ -1,0 +1,36 @@
+    <!-- User info -->
+    <h3>User info</h3>
+    <%= image_tag current_user.get_profile_image(100,100) %>
+    <table class="table table-striped">
+     <tbody>
+      <tr>
+        <td><p>name</p></td>
+        <td><p><span><%= current_user.name %></span></p></td>
+      </tr>
+      <tr>
+        <td><p>introduction</p></td>
+        <td><p><span><%= current_user.introduction %></span></p></td>
+      </tr>
+     </tbody>
+    </table>
+
+    <!--div class="row">
+    <!--% if @user == current_user %>
+      <p><!%= link_to "編集", edit_user_path %></p>
+    <!% end %>
+    </div>
+
+    <!--新規作成 -->
+       <div>
+        <h3>New book</h3>
+        <%= form_with model: @book do |f| %>
+         <h4>Title</h4>
+         <%= f.text_field :title %>
+      　  <h4>Opinion</h4>
+         <%= f.text_area :body %>
+
+         <div class="submit">
+          <%= f.submit "Create Book" %>
+         </div>
+         <% end %>
+         </div>
