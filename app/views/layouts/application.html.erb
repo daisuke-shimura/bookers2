@@ -13,54 +13,75 @@
   <body>
 
     <header>
-      <% if user_signed_in? %>
-      <br>
-      <li>
-        <!-- (current_user.id) -->
-        <%= link_to "Bookes" ,"/"%>
-      </li>
-      <li>
-        <%= link_to "Home" ,user_path(current_user.id)%>
-      </li>
-      <li>
-        <%= link_to "Users" ,"/users" %>
-      </li>
-      <li>
-        <%= link_to "Books" ,"/books" %>
-      </li>
-      <li>
-        <%= link_to "Log out",destroy_user_session_path, method: :delete %>
-      </li>
+      <div class="container">
+        <div class="row">
+          <% if user_signed_in? %>
+          <br>
+          <div class="col-md-7">
+            <li>
+              <!-- (current_user.id) -->
+              <%= link_to "Bookes" ,"/"%>
+            </li>
+          </div>
 
-      <% else %>
-      <br>
-      <li>
-        <%= link_to "Bookes"  %>
-      </li>
-      <li>
-        <%= link_to "Home" %>
-      </li>
-      <li>
-        <%= link_to "About",about_path %>
-      </li>
-      <li>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "Log in", new_user_session_path %>
-      </li>
+          <div class="col-md-4">
 
-      <% end %>
+            <li>
+              <%= link_to "Home" ,user_path(current_user.id)%>
+            </li>
+
+            <li>
+              <%= link_to "Users" ,"/users" %>
+            </li>
+
+            <li>
+              <%= link_to "Books" ,"/books" %>
+            </li>
+
+            <li>
+              <%= link_to "Log out",destroy_user_session_path, method: :delete %>
+            </li>
+
+          </div>
+
+          <% else %>
+          <br>
+          <div class="col-md-7">
+            <li>
+              <%= link_to "Bookes"  %>
+            </li>
+          </div>
+          
+          <div class="col-md-4">
+            <li>
+              <%= link_to "Home" %>
+            </li>
+            <li>
+              <%= link_to "About",about_path %>
+            </li>
+            <li>
+              <%= link_to "Sign up", new_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Log in", new_user_session_path %>
+            </li>
+          </div>
+          <% end %>
+        </div>
+
     </header>
+
 
     <main>
       <%= yield %>
     </main>
 
+
+
     <footer>
-
       <p>CopyRight Infratop.inc</p>
-
     </footer>
+
+   </div>
   </body>
 </html>

@@ -1,3 +1,5 @@
+<!--Books detail-->
+
 <div class="message">
   <%= flash[:notice] %>
  </div>
@@ -20,8 +22,11 @@
       <tbody>
 
         <tr>
-          <td><%= image_tag @book.user.get_profile_image(100,100) %><br>
-              <p><span><%= @book.user.name %></span></p>
+          <td><%= image_tag @book.user.get_profile_image(100,100) %>
+               <br>
+               <%= link_to user_path(current_user.id) do %>
+               <%= @book.user.name %>
+               <% end %>
           </td>
           <td><p><span><%= @book.title %></span></p></td>
           <td><p><span><%= @book.body %></span></p></td>
