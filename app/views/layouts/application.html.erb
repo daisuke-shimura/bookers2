@@ -5,44 +5,83 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <script src="https://kit.fontawesome.com/d81676dda2.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
 
-    <header>
-      <div class="container">
-        <div class="row">
-          <% if user_signed_in? %>
-          <br>
-          <div class="col-md-7">
-            <li>
-              <!-- (current_user.id) -->
-              <%= link_to "Bookes" ,"/"%>
-            </li>
-          </div>
+    <header class = "shadow-sm">
+      <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <div class="row">
+            <% if user_signed_in? %>
+            <br>
+            <div class="col-md-8">
+              <a class = "navbar-brand" href="/">
+                <span>Bookers</span>
+              </a>
+            </div>
 
-          <div class="col-md-4">
 
-            <li>
-              <%= link_to "Home" ,user_path(current_user.id)%>
-            </li>
+              <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
 
-            <li>
-              <%= link_to "Users" ,"/users" %>
-            </li>
+              <div class="col-md-4">
 
-            <li>
-              <%= link_to "Books" ,"/books" %>
-            </li>
+                <!--div class = "collapse navbar-collapse" id="navbarNavDropdown"-->
 
-            <li>
-              <%= link_to "Log out",destroy_user_session_path, method: :delete %>
-            </li>
+                  <ul class="navbar-nav ml-auto">
 
-          </div>
+                    <li>
+                      <div class="navbar-brand">
+                        <div class="text-white">
+                          <i class="fa-solid fa-house">
+                            <%= link_to "Home" , user_path(current_user.id) ,class: 'text-white'%>
+                          </i>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class = "navbar-brand">
+                        <div class="text-white">
+                          <i class="fa-solid fa-users">
+                            <%= link_to "Users" ,"/users" ,class: 'text-white' %>
+                          </i>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class = "navbar-brand" >
+                        <div class="text-white">
+                          <i class="fa-solid fa-book-open">
+                            <%= link_to "Books" ,"/books" ,class: 'text-white'%>
+                          </i>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class = "navbar-brand" >
+                        <div class="text-white">
+                          <i class="fa-solid fa-right-from-bracket">
+                            <%= link_to "Log out",destroy_user_session_path, method: :delete ,class: 'text-white'%>
+                          </i>
+                        </div>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                <!--/div-->
+
+            </div>
 
           <% else %>
           <br>
@@ -51,7 +90,7 @@
               <%= link_to "Bookes"  %>
             </li>
           </div>
-          
+
           <div class="col-md-4">
             <li>
               <%= link_to "Home" %>
@@ -68,7 +107,8 @@
           </div>
           <% end %>
         </div>
-
+       </div>
+      </nav>
     </header>
 
 
@@ -79,9 +119,15 @@
 
 
     <footer>
-      <p>CopyRight Infratop.inc</p>
+      <div class="container mt-5">
+        <div class = "row">
+          <div class = "mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
-   </div>
+
   </body>
 </html>

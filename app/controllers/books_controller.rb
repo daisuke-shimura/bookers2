@@ -58,10 +58,10 @@ class BooksController < ApplicationController
 
     if @book.destroy
       flash[:notice] = "Book was successfully delete."
-      redirect_to '/books'
+      redirect_to user_path(current_user.id)
     else
       flash[:notice] = "消せなかったよ"
-      redirect_to '/books'
+      redirect_to user_path(current_user.id)
     end
 
   end
