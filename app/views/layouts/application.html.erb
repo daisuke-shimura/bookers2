@@ -33,8 +33,10 @@
                     <li>
                       <div class="navbar-brand">
                         <div class="text-white">
-                          <i class="fa-solid fa-house"></i>
-                            <%= link_to "Home" , user_path(current_user.id) ,class: 'text-white'%>
+
+                            <%= link_to  user_path(current_user.id) ,class: 'text-white' , method: :get do %>
+                              <i class="fa-solid fa-house"></i> Home
+                            <% end %>
                         </div>
                       </div>
                     </li>
@@ -42,8 +44,10 @@
                     <li>
                       <div class = "navbar-brand">
                         <div class="text-white">
-                          <i class="fa-solid fa-users"></i>
-                            <%= link_to "Users" ,"/users" ,class: 'text-white' %>
+
+                            <%= link_to "/users" ,class: 'text-white' , method: :get do %>
+                              <i class="fa-solid fa-users"></i> Users
+                            <% end %>
                         </div>
                       </div>
                     </li>
@@ -51,19 +55,17 @@
                     <li>
                       <div class = "navbar-brand" >
                         <div class="text-white">
-                          <i class="fa-solid fa-book-open"></i>
-                            <%= link_to "Books" ,"/books" ,class: 'text-white'%>
+                            <%= link_to "/books" ,class: 'text-white' , method: :get do %>
+                              <i class="fa-solid fa-book-open"></i> Books
+                            <% end %>
                         </div>
                       </div>
                     </li>
 
                     <li>
-                      <div class = "navbar-brand" >
-                        <div class="text-white">
-                          <i class="fa-solid fa-right-from-bracket"></i>
-                            <%= link_to "Log out",destroy_user_session_path, method: :delete ,class: 'text-white'%>
-                        </div>
-                      </div>
+                      <a class="nav-link text-white"  data-method="delete" href="/users/sign_out">
+                        <i class="fa-solid fa-sign-out-alt"></i> Log out
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -77,14 +79,16 @@
             <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-
+            
+            <div class = "collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
               <li>
                 <div class="navbar-brand">
                   <div class="text-white">
-                    <i class="fa-solid fa-house"></i>
-                    <%= link_to "Home", '/' ,class: 'text-white'%>
+                    <%= link_to '/' , class: 'text-white', method: :get do %>
+                      <i class="fa-solid fa-house"></i> Home
+                    <% end %>
                   </div>
                 </div>
               </li>
@@ -92,8 +96,9 @@
               <li>
                 <div class="navbar-brand">
                   <div class="text-white">
-                    <i class="fa-solid fa-link"></i>
-                    <%= link_to "About",about_path ,class: 'text-white'%>
+                    <%= link_to about_path ,class: 'text-white', method: :get do %>
+                      <i class="fa-solid fa-link"></i> About
+                    <% end %>
                   </div>
                 </div>
               </li>
@@ -101,8 +106,9 @@
               <li>
                 <div class="navbar-brand">
                   <div class="text-white">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <%= link_to "Sign up", new_user_registration_path ,class: 'text-white'%>
+                    <%= link_to new_user_registration_path ,class: 'text-white', method: :get do %>
+                      <i class="fa-solid fa-user-plus"></i> Sign up
+                    <% end %>
                   </div>
                 </div>
               </li>
@@ -110,13 +116,14 @@
               <li>
                 <div class="navbar-brand">
                   <div class="text-white">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <%= link_to "Log in", new_user_session_path ,class: 'text-white'%>
+                    <%= link_to new_user_session_path ,class: 'text-white', method: :get do %>
+                      <i class="fa-solid fa-right-to-bracket"></i> Log in
+                    <% end %>
                   </div>
                 </div>
               </li>
             </ul>
-
+            </div>
           <% end %>
 
        </div>
