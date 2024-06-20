@@ -136,7 +136,11 @@
 
 
     <main>
-      <p id="notice"></p>
+      <p id="notice">
+        <div class="message">
+         <%= flash[:notice] %>
+        </div>
+      </p>
       <%= yield %>
     </main>
 
