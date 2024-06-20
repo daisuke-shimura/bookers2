@@ -63,9 +63,13 @@
                     </li>
 
                     <li>
-                      <a class="nav-link text-white"  data-method="delete" href="/users/sign_out">
-                        <i class="fa-solid fa-sign-out-alt"></i> Log out
-                      </a>
+                      <div class = "navbar-brand" >
+                        <div class="text-white">
+                          <%= link_to destroy_user_session_path ,class: 'text-white' , method: :delete do %>
+                            <i class="fa-solid fa-sign-out-alt"></i> Log out
+                          <% end %>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -79,7 +83,7 @@
             <button class = "navbar-toggler" type = "button" data-toggle = "collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded = "false" aria-label = "Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class = "collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
