@@ -11,7 +11,7 @@
 
     <h3>User info</h3>
     <%= image_tag @user.get_profile_image(100,100) %>
-    <table class="table table-striped">
+    <table class="table table-hover table-inverse">
      <tbody>
       <tr>
         <td><p>name</p></td>
@@ -24,17 +24,22 @@
      </tbody>
     </table>
 
-    <div class="row">
-    <% if @user == current_user %>
-      <p><%= link_to "編集", edit_user_path %></p>
-    <% end %>
-    </div>
+
+
+     <% if @user == current_user %>
+       <%= link_to  edit_user_path do %>
+        <button type="button" class="btn btn-outline-secondary btn-block">
+        <i class="fa-solid fa-user-gear"></i>
+        </button>
+       <% end %>
+     <% end %>
+
 
 
     <!--新規作成 -->
 
 
-       <div>
+       <div class="New book mt-3">
         <h3>New book</h3>
         <%= form_with model: @book do |f| %>
          <h4>Title</h4>
@@ -42,12 +47,12 @@
       　  <h4>Opinion</h4>
          <%= f.text_area :body %>
 
-         <div class="submit">
-          <!--%= f.submit "Create Book" %-->
+         <div class="submit mt-2">
           <button type="submit" class="btn btn-success">
            Create Book
           </button>
          </div>
+
          <% end %>
         </div>
 

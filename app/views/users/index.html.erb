@@ -11,7 +11,7 @@
 
     <h3>User info</h3>
     <%= image_tag current_user.get_profile_image(100,100) %>
-    <table class="table table-striped">
+    <table class="table table-hover table-inverse">
      <tbody>
       <tr>
         <td><p>name</p></td>
@@ -25,9 +25,9 @@
     </table>
 
     <div class="row">
-    <% if @user == current_user %>
-      <p><%= link_to "編集", edit_user_path %></p>
-    <% end %>
+    <!--% if @user == current_user %-->
+      <p><%= link_to "編集", edit_user_path(current_user) %></p>
+    <!--% end %-->
     </div>
 
 
@@ -43,8 +43,11 @@
          <%= f.text_area :body %>
 
          <div class="submit">
-          <%= f.submit "Create Book" %>
+          <button type="submit" class="btn btn-success">
+           Create Book
+          </button>
          </div>
+         
          <% end %>
          </div>
 
