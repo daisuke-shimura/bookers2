@@ -14,14 +14,15 @@
      </tbody>
     </table>
 
-    <div class="row">
+      <%= link_to  edit_user_path(current_user) do %>
+          <button type="button" class="btn btn-outline-secondary btn-block">
+            <i class="fa-solid fa-user-gear"></i>
+          </button>
+      <% end %>
 
-      <%= link_to "編集", edit_user_path(current_user) %>
-
-    </div>
 
     <!--新規作成 -->
-       <div>
+       <div class="New book mt-3">
         <h3>New book</h3>
         <%= form_with model: @book do |f| %>
          <h4>Title</h4>
@@ -29,7 +30,7 @@
       　  <h4>Opinion</h4>
          <%= f.text_area :body %>
 
-         <div class="submit">
+         <div class="submit mt-2">
           <button type="submit" class="btn btn-success">
            Create Book
           </button>

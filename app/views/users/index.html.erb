@@ -1,5 +1,5 @@
-<!--User一覧--> 
- 
+<!--User一覧-->
+
  <div class="message">
   <%= flash[:notice] %>
  </div>
@@ -24,17 +24,24 @@
      </tbody>
     </table>
 
-    <div class="row">
+    <!--User 編集-->
+    
+    <%= link_to  edit_user_path(current_user) do %>
+     <button type="button" class="btn btn-outline-secondary btn-block">
+        <i class="fa-solid fa-user-gear"></i>
+     </button>
+    <% end %>
+
     <!--% if @user == current_user %-->
-      <p><%= link_to "編集", edit_user_path(current_user) %></p>
+    
     <!--% end %-->
-    </div>
+
 
 
     <!--新規作成 -->
 
 
-       <div>
+       <div class="New book mt-3">
         <h3>New book</h3>
         <%= form_with model: @book do |f| %>
          <h4>Title</h4>
@@ -42,12 +49,12 @@
       　  <h4>Opinion</h4>
          <%= f.text_area :body %>
 
-         <div class="submit">
+         <div class="submit mt-2">
           <button type="submit" class="btn btn-success">
            Create Book
           </button>
          </div>
-         
+
          <% end %>
          </div>
 

@@ -24,7 +24,6 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @hon = Book.new #エラー用
-    @user = current_user.id
   end
 
   def show
