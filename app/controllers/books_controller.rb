@@ -32,11 +32,13 @@ class BooksController < ApplicationController
   end
 
   def edit
+    is_match_login_user
     @book = Book.find(params[:id])
     @hon = Book.find(params[:id]) #エラー用
   end
 
   def update
+    is_match_login_user
     @hon = Book.find(params[:id])
 
     if @hon.update(book_params)
@@ -69,6 +71,13 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :body, :image)
     end
+  
+  def is_match_login_user
+    book = Book.find(params[:id])
+    unless book.user_id == current_user.id
+      redirect_to "/books"
+    end
+  end
 
 
 end
