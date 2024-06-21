@@ -21,13 +21,13 @@
     </table>
 
    <!--User 編集-->
-     <% if @user == current_user %>
+     <!--% if @user == current_user %-->
        <%= link_to  edit_user_path do %>
         <button type="button" class="btn btn-outline-secondary btn-block">
         <i class="fa-solid fa-user-gear"></i>
         </button>
        <% end %>
-     <% end %>
+     <!--% end %-->
 
 
 
@@ -74,7 +74,9 @@
        <% @books. each do |book| %>
       <tr>
         <td>
-         <%= image_tag book.user.get_profile_image(100,100) %>
+         <%= link_to user_path(@user.id) do %>
+          <%= image_tag book.user.get_profile_image(100,100) %>
+         <% end %>
         </td>
         <td>
          <%= link_to book_path(book.id) do %>
