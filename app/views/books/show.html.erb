@@ -5,14 +5,14 @@
   <div class="col-md-3">
 
 <!--共通-->
-<%= render 'userinfo' %>
+<%= render 'userinfo' ,book:@book_user %>
 <!--共通-->
 
   </div>
 
      <!--book一覧-->
   <div class="col-md-8 offset-md-1">
-   <h2>Books detail</h2>
+   <h2>Book detail</h2>
     <table class="table table-hover table-inverse">
      <thead>
       <tbody>
@@ -20,7 +20,7 @@
         <tr>
           <td><%= image_tag @book.user.get_profile_image(100,100) %>
                <br>
-               <%= link_to user_path(current_user.id) do %>
+               <%= link_to user_path(@book.user.id) do %>
                <%= @book.user.name %>
                <% end %>
           </td>

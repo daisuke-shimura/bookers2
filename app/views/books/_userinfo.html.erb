@@ -1,20 +1,24 @@
     <!-- User info -->
     <h3>User info</h3>
-    <%= image_tag current_user.get_profile_image(100,100) %>
-    <table class="table table-hover table-inverse">
-     <tbody>
-      <tr>
-        <td><p>name</p></td>
-        <td><p><span><%= current_user.name %></span></p></td>
-      </tr>
-      <tr>
-        <td><p>introduction</p></td>
-        <td><p><span><%= current_user.introduction %></span></p></td>
-      </tr>
-     </tbody>
-    </table>
+      <!--% books.each do |book| %-->
 
-      <%= link_to  edit_user_path(current_user) do %>
+        <%= image_tag book.get_profile_image(100,100) %>
+        <table class="table table-hover table-inverse">
+         <tbody>
+          <tr>
+            <td><p>name</p></td>
+            <td><p><span><%= book.name %></span></p></td>
+          </tr>
+          <tr>
+            <td><p>introduction</p></td>
+            <td><p><span><%= book.introduction %></span></p></td>
+          </tr>
+         </tbody>
+        </table>
+
+      <!--% end %-->
+
+      <%= link_to  edit_user_path(book) do %>
           <button type="button" class="btn btn-outline-secondary btn-block">
             <i class="fa-solid fa-user-gear"></i>
           </button>
@@ -23,9 +27,9 @@
 
     <!--新規作成 -->
        <div class="New book mt-3">
-         
+
         <h3>New book</h3>
-        <%= form_with model: @book do |f| %>
+        <%= form_with model: Book.new do |f| %>
          <h4>Title</h4>
          <%= f.text_field :title %>
       　  <h4>Opinion</h4>

@@ -28,7 +28,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @user = current_user.id
+    @book_user = @book.user
+    #@books = Book.all
   end
 
   def edit
@@ -59,10 +60,10 @@ class BooksController < ApplicationController
 
     if @book.destroy
       flash[:notice] = "Book was successfully delete."
-      redirect_to user_path(current_user.id)
+      redirect_to books_path
     else
       flash[:notice] = "消せなかったよ"
-      redirect_to user_path(current_user.id)
+      redirect_to books_path
     end
 
   end
@@ -71,7 +72,7 @@ class BooksController < ApplicationController
     def book_params
       params.require(:book).permit(:title, :body, :image)
     end
-  
+
   def is_match_login_user
     book = Book.find(params[:id])
     unless book.user_id == current_user.id

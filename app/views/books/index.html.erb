@@ -1,5 +1,4 @@
 <!--Books-->
-
  <div class="container px-5">
   
   <!--新規作成のエラーメッセージ -->
@@ -20,7 +19,7 @@
    <div class="col-md-3">
 
 <!--共通-->
-<%= render 'userinfo' %>
+<%= render 'userinfo' , book:current_user%>
 <!--共通-->
 
   </div>
@@ -33,6 +32,7 @@
       <th></th>
       <th><h4>Title</h4></th>
       <th><h4>Opinion</h4></th>
+      <th></th>
     </tr>
    </thead>
 
@@ -48,6 +48,9 @@
        <% end %>
       </td>
       <td><p><span><%= book.body %></span></p></td>
+      
+      <td><%= book.user.name %></td>
+      
     </tr>
     <% end %>
    </tbody>
