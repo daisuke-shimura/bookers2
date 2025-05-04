@@ -14,11 +14,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   #フォロー機能
+  #フォローしている
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :following, through: :relationships, source: :followed
-
+  has_many :following, through: :follower, source: :followed
+  #フォローされた
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :active_relationships, source: :follower
+  has_many :followers, through: :followed, source: :follower
 
 
   has_one_attached :profile_image
@@ -29,6 +30,18 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def follow_by?(user)
+    following.include?(user)
+  end
+
+  def follow(user)
+    follower.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    follower.find_by(followed_id: user.id).destroy
   end
 
 end
