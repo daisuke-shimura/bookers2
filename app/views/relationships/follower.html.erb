@@ -1,1 +1,27 @@
-<h3>follower一覧</h3>
+<h3><%= @user.name %>さんのフォロー中一覧</h3>
+
+
+<table class="table">
+  <thead class="table-secondary">
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @follower.each do |follow| %>
+    <tr>
+      <td><%= image_tag follow.get_profile_image(100,100) %></td>
+      <td><%= follow.name %></td>
+      <td>フォロー数：<%= follow.following.count %></td>
+      <td>フォロワー数：<%= follow.followers.count %></td>
+      <td>
+        <%= link_to "Show", user_path(@user.id) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
