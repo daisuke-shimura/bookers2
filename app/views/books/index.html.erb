@@ -1,5 +1,5 @@
 <!--Books-->
- <div class="container px-5">
+<div class="container px-5">
 
   <!--新規作成のエラーメッセージ -->
 
@@ -16,57 +16,54 @@
     <% end %>
 
   <div class="row">
-   <div class="col-md-3">
+    <div class="col-md-3">
+      <!--共通-->
+      <%= render 'userinfo' , user: current_user %>
+      <!--共通-->
+    </div>
 
-<!--共通-->
-<%= render 'userinfo' , book:current_user%>
-<!--共通-->
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th></th>
+          <th><h4>Title</h4></th>
+          <th><h4>Opinion</h4></th>
+          <th><h5>Comment</h5></th>
+          <th><h5><i class="fa-solid fa-heart"></i></h5></th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <% @books.each do |book| %>
+        <tr>
+          <td>
+          <%= link_to user_path(book.user.id) do %>
+            <%= image_tag book.user.get_profile_image(100,100) %>
+          <% end %>
+          </td>
+          <td>
+          <%= link_to  book_path(book.id) do %>
+            <%= book.title %>
+          <% end %>
+          </td>
+          <td><p><span><%= book.body %></span></p></td>
+
+          <td>
+            <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
+          </td>
+
+          <td id="favorite-btn-<%= book.id %>">
+            <%= render "favorites/favorite-btn", book:book %>
+          </td>
+
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
   </div>
-
- <div class="col-md-8 offset-md-1">
- <h2>Books</h2>
-  <table class="table table-hover table-inverse">
-   <thead>
-    <tr>
-      <th></th>
-      <th><h4>Title</h4></th>
-      <th><h4>Opinion</h4></th>
-      <th><h5>Comment</h5></th>
-      <th><h5><i class="fa-solid fa-heart"></i></h5></th>
-    </tr>
-   </thead>
-
-   <tbody>
-     <% @books.each do |book| %>
-    <tr>
-      <td>
-       <%= link_to user_path(book.user.id) do %>
-        <%= image_tag book.user.get_profile_image(100,100) %>
-       <% end %>
-      </td>
-      <td>
-       <%= link_to  book_path(book.id) do %>
-        <%= book.title %>
-       <% end %>
-      </td>
-      <td><p><span><%= book.body %></span></p></td>
-
-      <td>
-        <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
-      </td>
-
-      <td id="favorite-btn-<%= book.id %>">
-        <%= render "favorites/favorite-btn", book:book %>
-      </td>
-
-    </tr>
-    <% end %>
-   </tbody>
-  </table>
- </div>
-
-</div>
 </div>
 
 

@@ -1,44 +1,62 @@
-    <!-- User info -->
-    <h3>User info</h3>
-      <!--% books.each do |book| %-->
 
-        <%= image_tag book.get_profile_image(100,100) %>
-        <table class="table table-hover table-inverse">
-         <tbody>
-          <tr>
-            <td><p>name</p></td>
-            <td><p><span><%= book.name %></span></p></td>
-          </tr>
-          <tr>
-            <td><p>introduction</p></td>
-            <td><p><span><%= book.introduction %></span></p></td>
-          </tr>
-         </tbody>
-        </table>
+<h3>User info</h3>
+<%= image_tag user.get_profile_image(100,100) %>
+<table class="table table-hover table-inverse">
+  <tbody>
+    <tr>
+      <td><p>name</p></td>
+      <td><p><span><%= user.name %></span></p></td>
+    </tr>
+    <tr>
+      <td><p>introduction</p></td>
+      <td><p><span><%= user.introduction %></span></p></td>
+    </tr>
+    <tr>
+      <th><p>フォロー中</p></th>
+      <td>
+        <%= link_to user_follwer_path(user.id) do %>
+          <%= user.following.count %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th><p>フォロワー</p></th>
+      <td>
+        <%= link_to user_follwed_path(user.id) do %>
+          <%= user.followers.count %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-      <!--% end %-->
+<!--User 編集-->
+<% if user == current_user %>
+  <%= link_to  edit_user_path(user.id) do %>
+  <button type="button" class="btn btn-outline-secondary btn-block">
+    <i class="fas fa-user-cog"></i>
+  </button>
+  <% end %>
+<% else %>
+  <% if current_user.follow_by?(user) %>
+    <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class:"btn btn-info" %>
+  <% else %>
+    <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success" %>
+  <% end %>
+<% end %>
 
-      <%= link_to  edit_user_path(book) do %>
-          <button type="button" class="btn btn-outline-secondary btn-block">
-            <i class="fas fa-user-cog"></i>
-          </button>
-      <% end %>
+<!--新規作成 -->
+<div class="New book mt-3">
+  <h3>New book</h3>
+  <%= form_with model: Book.new do |f| %>
+    <%= f.label :title, "Title" %><br>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :body, "Opinion" %><br>
+    <%= f.text_area :body %>
 
-
-    <!--新規作成 -->
-       <div class="New book mt-3">
-
-        <h3>New book</h3>
-        <%= form_with model: Book.new do |f| %>
-         <h4>Title</h4>
-         <%= f.text_field :title %>
-      　  <h4>Opinion</h4>
-         <%= f.text_area :body %>
-
-         <div class="submit mt-2">
-          <button type="submit" class="btn btn-success">
-           Create Book
-          </button>
-         </div>
-         <% end %>
-         </div>
+    <div class="submit mt-2">
+      <%= f.submit "Create Book", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

@@ -1,92 +1,47 @@
 <!--User一覧-->
 
 <div class="container px-5">
- <div class="row">
+  <div class="row">
      <!-- User info -->
-  <div class="col-md-3">
+    <div class="col-md-3">
+      <%= render "books/userinfo", user: current_user %>
+    </div>
 
-    <h3>User info</h3>
-    <%= image_tag current_user.get_profile_image(100,100) %>
-    <table class="table table-hover table-inverse">
-     <tbody>
-      <tr>
-        <td><p>name</p></td>
-        <td><p><span><%= current_user.name %></span></p></td>
-      </tr>
-      <tr>
-        <td><p>introduction</p></td>
-        <td><p><span><%= current_user.introduction %></span></p></td>
-      </tr>
-     </tbody>
-    </table>
+    <!--user一覧-->
+    <div class="col-md-8 offset-md-1">
+    <h2>Users</h2>
+      <table class="table table-hover table-inver">
+      <thead>
+        <tr>
+          <th><h4>image</h4></th>
+          <th><h4>name</h4></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-    <!--User 編集-->
-
-    <%= link_to  edit_user_path(current_user) do %>
-     <button type="button" class="btn btn-outline-secondary btn-block">
-        <i class="fas fa-user-cog"></i>
-     </button>
-    <% end %>
-
-    <!--新規作成 -->
-
-
-       <div class="New book mt-3">
-        <h3>New book</h3>
-        <%= form_with model: @book do |f| %>
-         <h4>Title</h4>
-         <%= f.text_field :title %>
-      　  <h4>Opinion</h4>
-         <%= f.text_area :body %>
-
-         <div class="submit mt-2">
-          <button type="submit" class="btn btn-success">
-           Create Book
-          </button>
-         </div>
-
-         <% end %>
-         </div>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><p><span><%= image_tag user.get_profile_image(100,100) %></span></p></td>
+          <td><p><span><%= user.name %></span></p></td>
+          <td>フォロー数：<%= user.following.count %></td>
+          <td>フォロワー数：<%= user.followers.count %></td>
+          <td>
+            <% if current_user.follow_by?(user) %>
+              <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete %>
+            <% else %>
+              <%= link_to "フォロー", user_relationships_path(user.id), method: :post %>
+            <% end %>
+          </td>
+          <td><%= link_to "Show", user_path(user.id)%></td>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
 
   </div>
-
-
-
-    <!--book一覧-->
-  <div class="col-md-8 offset-md-1">
-   <h2>Users</h2>
-    <table class="table table-hover table-inver">
-     <thead>
-      <tr>
-        <th><h4>image</h4></th>
-        <th><h4>name</h4></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-     </thead>
-
-     <tbody>
-       <% @users.each do |user| %>
-      <tr>
-        <td><p><span><%= image_tag user.get_profile_image(100,100) %></span></p></td>
-        <td><p><span><%= user.name %></span></p></td>
-        <td>フォロー数：<%= user.following.count %></td>
-        <td>フォロワー数：<%= user.followers.count %></td>
-        <td>
-          <% if current_user.follow_by?(user) %>
-            <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォロー", user_relationships_path(user.id), method: :post %>
-          <% end %>
-        </td>
-        <td><%= link_to "Show", user_path(user.id)%></td>
-      </tr>
-      <% end %>
-     </tbody>
-    </table>
-  </div>
-
- </div>
 </div>

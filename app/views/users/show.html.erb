@@ -1,148 +1,78 @@
 <!--Home-->
 
 <div class="container px-5">
- <div class="row">
+  <div class="row">
      <!-- User info -->
-  <div class="col-md-3">
-
-    <h3>User info</h3>
-    <%= image_tag @user.get_profile_image(100,100) %>
-    <table class="table table-hover table-inverse">
-     <tbody>
-      <tr>
-        <td><p>name</p></td>
-        <td><p><span><%= @user.name %></span></p></td>
-      </tr>
-      <tr>
-        <td><p>introduction</p></td>
-        <td><p><span><%= @user.introduction %></span></p></td>
-      </tr>
-      <tr>
-        <th><p>フォロー中</p></th>
-        <td>
-          <%= link_to user_follwer_path(@user.id) do %>
-            <%= @user.following.count %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th><p>フォロワー</p></th>
-        <td>
-          <%= link_to user_follwed_path(@user.id) do %>
-            <%= @user.followers.count %>
-          <% end %>
-        </td>
-      </tr>
-     </tbody>
-    </table>
-
-   <!--User 編集-->
-     <% if @user == current_user %>
-       <%= link_to  edit_user_path do %>
-        <button type="button" class="btn btn-outline-secondary btn-block">
-         <i class="fas fa-user-cog"></i>
-        </button>
-       <% end %>
-     <% else %>
-        <% if current_user.follow_by?(@user) %>
-          <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete, class:"btn btn-info" %>
-        <% else %>
-          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-success" %>
-        <% end %>
-     <% end %>
-
-
-
-    <!--新規作成 -->
-
-
-       <div class="New book mt-3">
-        <h3>New book</h3>
-        <%= form_with model: @book do |f| %>
-         <h4>Title</h4>
-         <%= f.text_field :title %>
-      　  <h4>Opinion</h4>
-         <%= f.text_area :body %>
-
-         <div class="submit mt-2">
-          <button type="submit" class="btn btn-success">
-           Create Book
-          </button>
-         </div>
-
-         <% end %>
-        </div>
-
-  </div>
-
-
+    <div class="col-md-3">
+      <%= render "books/userinfo", user: @user %>
+    </div>
 
     <!--book一覧-->
-  <div class="col-md-8 offset-md-1">
-   <h2>Books</h2>
-    <table class="table table-hover table-inverse">
-     <thead>
-      <tr>
-       <th></th>
-       <th><h4>Title</h4></th>
-       <th><h4>Opinion</h4></th>
-       <th><h5>Comment</h5></th>
-       <th><h5><i class="fa-solid fa-heart"></i></h5></th>
+    <div class="col-md-8 offset-md-1">
+    <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+        <th></th>
+        <th><h4>Title</h4></th>
+        <th><h4>Opinion</h4></th>
+        <th><h5>Comment</h5></th>
+        <th><h5><i class="fa-solid fa-heart"></i></h5></th>
 
-      </tr>
-     </thead>
+        </tr>
+      </thead>
 
-     <tbody>
-       <% @books. each do |book| %>
-      <tr>
-        <td>
-         <%= link_to user_path(@user.id) do %>
-          <%= image_tag book.user.get_profile_image(100,100) %>
-         <% end %>
-        </td>
-        <td>
-         <%= link_to book_path(book.id) do %>
-             <%= book.title %>
-            <% end %>
-        </td>
-        <td><p><span><%= book.body %></span></p></td>
+      <tbody>
+        <% @books. each do |book| %>
+        <tr>
+          <td>
+          <%= link_to user_path(@user.id) do %>
+            <%= image_tag book.user.get_profile_image(100,100) %>
+          <% end %>
+          </td>
+          <td>
+          <%= link_to book_path(book.id) do %>
+              <%= book.title %>
+              <% end %>
+          </td>
+          <td><p><span><%= book.body %></span></p></td>
 
-        <td>
-         <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
-        </td>
+          <td>
+          <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>
+          </td>
 
-        <td>
-         <% if book.favorited_by?(current_user) %>
-          <p>
-            <%= link_to book_favorites_path(book), method: :delete do %>
-              <button type="button" class="btn btn-outline-primary">
-                <i class="fa-solid fa-heart"></i>
-               </button>
-               <br>
-               <%= book.favorites.count %>
-               いいね
-            <% end %>
-          </p>
-         <% else %>
-          <p>
-            <%= link_to book_favorites_path(book), method: :post do %>
-               <button type="button" class="btn btn-outline-primary">
-                <i class="fa-regular fa-heart"></i>
-               </button>
-               <br>
-               <%= book.favorites.count %>
-               いいね
-            <% end %>
-          </p>
-         <% end %>
-        </td>
+          <td>
+          <% if book.favorited_by?(current_user) %>
+            <p>
+              <%= link_to book_favorites_path(book), method: :delete do %>
+                <button type="button" class="btn btn-outline-primary">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <br>
+                <%= book.favorites.count %>
+                いいね
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to book_favorites_path(book), method: :post do %>
+                <button type="button" class="btn btn-outline-primary">
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+                <br>
+                <%= book.favorites.count %>
+                いいね
+              <% end %>
+            </p>
+          <% end %>
+          </td>
 
-      </tr>
-      <% end %>
-     </tbody>
-    </table>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+    </div>
+
   </div>
-
- </div>
 </div>
 
