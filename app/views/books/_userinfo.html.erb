@@ -41,8 +41,8 @@
   <% if current_user.follow_by?(user) %>
     <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class:"btn btn-info" %>
 
-    <% if %>
-      
+    <% if current_user.follow_by?(user) && user.follow_by?(current_user) %>
+      <%= link_to "DMを送る", chat_path(user.id), class:"btn btn-primary" %>
     <% end %>
 
   <% else %>

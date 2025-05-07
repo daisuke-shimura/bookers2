@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   def follow(user)
-    unless user == current_user
+    unless self == user
       follower.create(followed_id: user.id)
     end
   end
