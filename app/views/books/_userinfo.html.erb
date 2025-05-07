@@ -40,6 +40,11 @@
 <% else %>
   <% if current_user.follow_by?(user) %>
     <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class:"btn btn-info" %>
+
+    <% if %>
+      
+    <% end %>
+
   <% else %>
     <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success" %>
   <% end %>
