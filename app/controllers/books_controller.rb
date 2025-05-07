@@ -21,7 +21,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    #@books = Book.all
+    @books = Book.left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC')
     @book = Book.new
     @hon = Book.new #エラー用
   end
