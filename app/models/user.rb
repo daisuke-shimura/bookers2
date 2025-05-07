@@ -37,7 +37,9 @@ class User < ApplicationRecord
   end
 
   def follow(user)
-    follower.create(followed_id: user.id)
+    unless user == current_user
+      follower.create(followed_id: user.id)
+    end
   end
 
   def unfollow(user)
