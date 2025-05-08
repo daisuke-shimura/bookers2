@@ -26,16 +26,15 @@ class ChatsController < ApplicationController
 
   def create
     @chat = current_user.chats.new(chat_params)
-    @chat.room_id = 
     @chat.save!
-    redirect_to request.referer
+    #redirect_to request.referer
   end
 
 
   def destroy
     @chat = current_user.chats.find(params[:id])
     @chat.destroy
-    redirect_to request.referer
+    #redirect_to request.referer
   end
 
 

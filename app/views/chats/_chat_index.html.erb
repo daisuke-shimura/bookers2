@@ -1,0 +1,16 @@
+<% if chat.user_id == current_user.id %>
+  <div class="d-flex justify-content-end" id="chat-mychat">
+    <p id="chat-<%= chat.id %>">
+      <span class="text-secondary small mr-1"><%= chat.created_at.strftime("%H:%M") %></span>
+      <span class="badge badge-pill badge-success p-2 mr-1"><%= chat.message %></span>
+      <%= link_to "削除", chat_path(chat.id), method: :delete, remote: true, class:"btn btn-danger btn-sm" %>
+    </p>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-start">
+    <p>
+      <span class="text-secondary small mr-1"><%= chat.created_at.strftime("%H:%M") %></span>
+      <span class="badge badge-pill badge-secondary p-2 mr-1"><%= chat.message %></span>
+    </p>
+  </div>
+<% end %>

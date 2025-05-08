@@ -1,0 +1,5 @@
+<%= form_with model:chat, url: chats_path, method: :post, local: false do |f| %>
+  <%= f.text_area :message, id:"chat-text" %>
+  <%= f.hidden_field :room_id %>
+  <%= f.submit "送信" %>
+<% end %>
