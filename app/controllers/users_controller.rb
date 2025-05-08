@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = Book.new
     @hon = Book.new #エラー用
+    #投稿数 計測
+    @today_books = @books.created_today
+    @yesterday_books = @books.created_yesterday
+    @this_week_books = @books.created_this_week
+    @last_week_books = @books.created_last_week
   end
 
   def edit
