@@ -32,6 +32,7 @@
           <th><h4>Opinion</h4></th>
           <th><h5>Comment</h5></th>
           <th><h5><i class="fa-solid fa-heart"></i></h5></th>
+          <th>閲覧数</th>
         </tr>
       </thead>
 
@@ -58,6 +59,7 @@
             <%= render "favorites/favorite-btn", book:book %>
           </td>
 
+          <td><%= book.view_count %></td>
         </tr>
         <% end %>
       </tbody>
