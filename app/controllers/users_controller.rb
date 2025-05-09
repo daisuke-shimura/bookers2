@@ -9,9 +9,16 @@ class UsersController < ApplicationController
     @hon = Book.new #エラー用
     #投稿数 計測
     @today_books = @books.created_today
-    @yesterday_books = @books.created_yesterday
+    @yesterday_books = @books.created_one_ago
     @this_week_books = @books.created_this_week
     @last_week_books = @books.created_last_week
+
+    #7日分の投稿数
+    @two_ago_books = @books.created_two_ago
+    @three_ago_books = @books.created_three_ago
+    @four_ago_books = @books.created_four_ago
+    @five_ago_books = @books.created_five_ago
+    @six_ago_books = @books.created_six_ago 
   end
 
   def edit
