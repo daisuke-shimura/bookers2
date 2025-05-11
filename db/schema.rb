@@ -80,9 +80,8 @@ ActiveRecord::Schema.define(version: 2025_05_09_033259) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer "image_id"
-    t.integer "owner_id"
-    t.string "name"
+    t.integer "owner_id", null: false
+    t.string "name", null: false
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
