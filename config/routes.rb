@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :book_comments, only:[:create, :destroy]
   end
 
-  resources :groups, only: [:new, :index, :show, :edit, :create, :destroy, :update]
+  resources :groups, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+    resource :group_users, only: [:create, :destroy]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

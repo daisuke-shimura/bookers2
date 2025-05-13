@@ -10,9 +10,40 @@
     <div class="col-8 offset-1">
       <h2>Groups Detail</h2>
       <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>メンバー</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <%= render "row", group: @group %>
+            <td>
+              <%= image_tag @group.get_group_image.variant(resize_to_limit: [100, 100]).processed %>
+            </td>
+            <td>
+              <%= link_to group_path(@group.id) do %>
+                <%= @group.name %>
+              <% end %>
+            </td>
+            <td><%= @group.introduction %></td>
+            <td>
+
+            </td>
+            <td>
+              <% if @group.owner_id == current_user.id %>
+                <%= link_to "Edit", edit_group_path(@group.id), class: "btn btn-success" %>
+              <% else %>
+                <% if @group.group_users.exists?(user_id: current_user.id) %>
+                  <%= link_to "Leave this group", group_group_users_path(@group.id), method: :delete, class: "btn btn-danger" %>
+                <% else %>
+                  <%= link_to "Join this group", group_group_users_path(@group.id), method: :post, class: "btn btn-success" %>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
