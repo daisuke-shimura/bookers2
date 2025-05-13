@@ -4,17 +4,6 @@
   </div>
 
   <div class="row justify-content-center">
-    <%= form_with model: @group do |f| %>
-      <%= f.label :name, "グループ名" %><br>
-      <%= f.text_field :name %><br>
-
-      <%= f.label :introduction, "紹介文" %><br>
-      <%= f.text_area :introduction %><br>
-
-      <%= f.label :image,"グループ画像" %><br>
-      <%= f.file_field :image %><br>
-
-      <%= f.submit "Create Group", class:"btn btn-success mt-3" %>
-    <% end %>
+    <%= render "form", group: @group %>
   </div>
 </div>

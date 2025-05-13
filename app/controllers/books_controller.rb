@@ -1,5 +1,4 @@
-  class BooksController < ApplicationController
-
+class BooksController < ApplicationController
   def new
     @book = Book.new
   end
@@ -80,6 +79,5 @@
       redirect_to "/books"
     end
   end
-
 
 end

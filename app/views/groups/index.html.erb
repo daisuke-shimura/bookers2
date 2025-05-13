@@ -22,14 +22,7 @@
         <tbody>
           <% @groups.each do |group| %>
           <tr>
-            <td>画像</td>
-            <td>
-              <%= link_to group_path(group.id) do %>
-                <%= group.name %>
-              <% end %>
-            </td>
-            <td><%= group.introduction %></td>
-            <td><%= link_to "Edit", edit_group_path(group.id), class: "btn btn-success" %></td>
+            <%= render "row", group: group %>
           </tr>
           <% end %>
         </tbody>

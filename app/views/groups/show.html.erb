@@ -1,2 +1,24 @@
-<h1>Groups#show</h1>
-<p>Find me in app/views/groups/show.html.erb</p>
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-3">
+      <%= render "books/userinfo", user: current_user %> 
+    </div>
+
+
+    <div class="col-8 offset-1">
+      <h2>Groups Detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <%= render "row", group: @group %>
+          </tr>
+        </tbody>
+      </table>
+    
+    </div>
+  
+  </div>
+
+</div>
