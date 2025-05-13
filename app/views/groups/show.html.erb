@@ -31,7 +31,9 @@
             </td>
             <td><%= @group.introduction %></td>
             <td>
-
+              <% @group_user.each do |group_user| %>
+                <%= group_user.name %><br>
+              <% end %>
             </td>
             <td>
               <% if @group.owner_id == current_user.id %>
