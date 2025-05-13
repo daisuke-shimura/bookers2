@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :is_match_login_user, only: [:edit, :create]
+
   def index
     @groups = Group.all
   end
@@ -35,5 +37,12 @@ class GroupsController < ApplicationController
   private
   def group_params
     params.require(:group).permit(:name, :introduction, :image) 
+  end
+
+  def is_match_login_user
+    group = Group.find(params[:id])
+    unless group.owner_id == current_user.id
+      redirect_to groups_path
+    end
   end
 end
