@@ -14,14 +14,19 @@ class BooksController < ApplicationController
       redirect_to book_path(@hon.id)
      else
       #flash[:notice] = "失敗しちゃったよ"
-      @books = Book.all
+      @books = Book.all.order(params[:sort])
       @book = Book.new
       render :index
      end
   end
 
   def index
-    @books = Book.all.order(params[:sort])
+    if params[:category].present?
+      @books = Book.where(tag: params[:category])
+    else
+      @books = Book.all.order(params[:sort])
+    end
+
     @book = Book.new
     @hon = Book.new #エラー用
   end
@@ -71,7 +76,7 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:title, :body, :image, :star)
+      params.require(:book).permit(:title, :body, :image, :star, :tag)
     end
 
   def is_match_login_user

@@ -1,6 +1,12 @@
 <!--Books-->
 <div class="container px-5">
 
+  <!--検索-->
+  <%= form_with url: books_path, method: :get do |f| %>
+    <%= f.text_field :category %>
+    <%= f.submit "検索" %>
+  <% end %>
+
   <!--新規作成のエラーメッセージ -->
 
     <% if @hon.errors.any? %>
@@ -33,6 +39,7 @@
           <th></th>
           <th><h4>Title</h4></th>
           <th><h4>Opinion</h4></th>
+          <th><h5>Tag</h5></th>
           <th><h5>Comment</h5></th>
           <th><h5><i class="fa-solid fa-heart"></i></h5></th>
           <th></th>
@@ -53,6 +60,12 @@
           <% end %>
           </td>
           <td><p><span><%= book.body %></span></p></td>
+
+          <td>
+            <%= link_to books_path(category: book.tag) do %>
+              <%= book.tag %>
+            <% end %>
+          </td>
 
           <td>
             <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p>

@@ -32,6 +32,8 @@
 
           <td><p><span><%= @book.body %></span></p></td>
 
+          <td><%= @book.tag %></td>
+
           <td id="favorite-btn-<%= @book.id %>">
             <%= render "favorites/favorite-btn", book:@book %>
           </td>
