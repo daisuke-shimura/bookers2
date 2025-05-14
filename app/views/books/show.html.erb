@@ -40,6 +40,10 @@
             <%= render "book_comments/comment_count", book:@book %>
           </td>
 
+          <td>
+            <%= render "star_rate", book: @book %>
+          </td>
+
           <% if @book.user == current_user %>
           <td>
             <%= link_to  edit_book_path(@book.id) do %>

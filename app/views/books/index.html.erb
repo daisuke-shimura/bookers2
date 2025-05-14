@@ -32,6 +32,7 @@
           <th><h4>Opinion</h4></th>
           <th><h5>Comment</h5></th>
           <th><h5><i class="fa-solid fa-heart"></i></h5></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -56,6 +57,10 @@
 
           <td id="favorite-btn-<%= book.id %>">
             <%= render "favorites/favorite-btn", book:book %>
+          </td>
+
+          <td>
+            <%= render "star_rate", book: book %>
           </td>
 
         </tr>
