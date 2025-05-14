@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2025_05_14_080306) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "view_count", default: 0, null: false
-    t.string "star"
+    t.float "star"
   end
 
   create_table "chats", force: :cascade do |t|
